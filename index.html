@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cmn-Hans">
+	<meta charset="UTF-8">
+	<title>弹幕HLS播放器</title>
+	
+	<link href="css/scojs.css" rel="stylesheet">
+	<link href="css/colpick.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/video.css" />
+	
+	<link rel="shortcut icon" href="img/favicon.ico" />	
+</head>
+
+<body>
+	<!-- 内容 -->
+	<div id="danmup" style="left: 50%; margin-left: -400px; top: 100px; width: 800px; height: 520px; overflow: hidden;" class="danmu-player">
+		<!-- 弹幕 -->
+		<div class="danmu-div" id="danmup-danmu-div">
+			<div class="danmaku">			
+			</div>
+		</div>
+		
+		<!-- 视频 -->
+		<video id="my_video_1" class="danmu-video video-js vjs-default-skin"
+			width="800px" height="480px" controls preload="auto" data-setup="{}">
+			<source src="m3u8/1.m3u8" type="application/x-mpegURL" />
+		</video>
+		
+		<!-- 加载界面 -->
+		<div class="danmu-player-load"></div>
+		
+		<!-- 播放、缓冲进度 -->
+		<div class="danmu-player-ctrl">
+			<div class="ctrl-progress">
+				<div class="current">
+					<div class="progress-handle"></div>
+				</div>
+				<div class="buffered"></div>
+			</div>
+		
+			<!-- 播放控制条 -->
+			<div class="ctrl-main">
+				<!-- 播放按钮 -->
+				<div class="play-btn ctrl-btn">
+					<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+				</div>
+				<!-- 时间 -->
+				<div class="current-time time-text ctrl-btn">0:00</div>
+				<div class="slash time-text ctrl-btn">/</div>
+				<div class="duration ctrl-btn time-text">4:02</div>
+				
+				<!-- 弹幕设置 -->
+				<div class="opt-btn ctrl-btn ">
+					<span class="glyphicon glyphicon-text-color" aria-hidden="true"></span>
+				</div>
+				
+				<!-- 弹幕输入框 -->
+				<input class="danmu-input ctrl-btn" type="textarea" id="danmu_text" max="300">
+				
+				<!-- 发送按钮 -->
+				<div class=" send-btn ctrl-btn">发送 &gt;</div>
+				
+				<!-- 全屏按钮 -->
+				<div class="full-screen ctrl-btn-right"><span class=" glyphicon glyphicon-resize-full" aria-hidden="true"></span></div>
+				
+				<!-- 循环播放按钮 -->
+				<div class="loop-btn ctrl-btn-right"><span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></div>
+				
+				<!-- 弹幕显示/隐藏 -->
+				<div class="show-danmu ctrl-btn-right ctrl-btn-right-active"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
+				
+				<!-- 弹幕透明度设置 -->
+				<div class="opacity ctrl-btn-right">
+					<input class="ctrl-btn-right danmu-op" value="100" type="range">
+				</div>
+			</div>
+		</div>
+	
+		<!-- 按钮提示 -->
+		<div class="danmu-player-tip"></div>	
+	</div>
+	
+	<div style="display: none">
+		<span class="glyphicon" aria-hidden="true">&#xe072</span>
+		<span class="glyphicon" aria-hidden="true">&#xe073</span>
+		<span class="glyphicon" aria-hidden="true">&#xe242</span>
+		<span class="glyphicon" aria-hidden="true">&#xe115</span>
+		<span class="glyphicon" aria-hidden="true">&#xe111</span>
+		<span class="glyphicon" aria-hidden="true">&#xe096</span>
+		<span class="glyphicon" aria-hidden="true">&#xe097</span>
+	</div>
+	
+	<!-- 弹幕提示 -->
+	<div id="fontTip" hidden="true">
+		<form id="danmu-position">
+			弹幕位置：
+			<input type="radio" checked="checked" name="danmu_position" value="0">滚动
+			<input type="radio" name="danmu_position" value="1">顶端
+			<input type="radio" name="danmu_position" value="2">底端
+		</form>
+		<form id="danmu-size">弹幕大小：
+			<input type="radio" checked="checked" name="danmu_size" value="1">大文字
+			<input type="radio" name="danmu_size" value="0">小文字
+		</form>
+		<div class="colpicker"></div>
+	</div>
+	
+	<!-- js -->
+	<script src="js/jquery-2.1.4.min.js"></script>	
+	<script src="js/jquery.shCircleLoader.js"></script>
+	<script src="js/jquery.danmu.js"></script>
+	<script src="js/sco.tooltip.js"></script>
+	<script src="js/colpick.js"></script>	
+	<script src="js/video.js"></script>
+	<script src="js/videojs-live.js"></script>
+	
+	<script src="js/twdanmuplayer.js"></script>
+	
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	<script>		
+		$("#danmup .danmu-div").danmu("addDanmu",[
+			{ "text":"这是滚动弹幕" ,color:"white",size:1,position:0,time:2}
+			,{ "text":"我是帽子绿" ,color:"green",size:1,position:0,time:3}
+			,{ "text":"哈哈哈啊哈" ,color:"black",size:1,position:0,time:10}
+			,{ "text":"这是顶部弹幕" ,color:"yellow" ,size:1,position:1,time:3}
+			,{ "text":"这是底部弹幕" , color:"red" ,size:1,position:2,time:9}
+			,{ "text":"大家好，我是伊藤橙" ,color:"orange",size:1,position:1,time:3}])
+	</script>	
+</body>
+</html>
